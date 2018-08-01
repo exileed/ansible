@@ -146,7 +146,9 @@ class RabbitMqBinding(object):
             201: True,
             204: True,
         }
-        self.api_result = self.request.get(self.url, auth=self.authentication)
+        payload = {'routing_key': self.routing_key,'arguments':{}}
+        
+        self.api_result = self.request.post(self.url, auth=self.authentication, data=payload)
 
     def run(self):
         """
